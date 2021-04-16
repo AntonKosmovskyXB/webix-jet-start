@@ -17,15 +17,17 @@ export default class ContactsView  extends JetView{
 			elements: [
 				{view: "text", label: "Name", name: "name"},
 				{view: "text", label: "Email", name: "email"},
-				{ 
-					view: "button", 
-					value: "Save" , 
-				},
-				{ 
-					view: "button", 
-					value: "Clear",
-					click: () => this.clearForm()
-				},
+				{cols:[
+					{ 
+						view: "button", 
+						value: "Save" , 
+					},
+					{ 
+						view: "button", 
+						value: "Clear",
+						click: () => this.clearForm()
+					},
+				]},
 				{}
 			]
 		};
@@ -42,10 +44,9 @@ export default class ContactsView  extends JetView{
 	clearForm() {
 		webix.confirm({
 			text: "Do you want to clear this form?"
-		}).then(
-			() => {
-				this.$$("contactsForm").clear();
-			}
+		}).then(() => {
+			this.$$("contactsForm").clear();
+		}
 		);
 	}
 	
