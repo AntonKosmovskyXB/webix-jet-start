@@ -43,9 +43,9 @@ export default class Datatable extends JetView {
 	addItem() {
 		const currentValue = this.$$("datatableInput").getValue();
 		if (currentValue !== "") {
-			this.$$("datatable").add({Name: currentValue});	
+			this.$$("datatable").add({Name: currentValue});
+			this.$$("datatableInput").setValue("");	
 		}
-		this.$$("datatableInput").setValue("");
 	}
 
 	deletedItem() {
