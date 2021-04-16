@@ -6,7 +6,6 @@ export default class ContactsView  extends JetView{
 		const list = {
 			view: "list",
 			localId: "contactsList",
-			data: contacts,
 			template: "Name: #Name#, Email: #Email#",
 			select: true
 		};
