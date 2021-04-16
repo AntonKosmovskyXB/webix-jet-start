@@ -40,22 +40,23 @@ export default class Datatable extends JetView {
 		};
 	}
 
+	init() {
+		this.table = this.$$("datatable");
+		this.table.parse(this.data);
+	}
+
 	addItem() {
 		const currentValue = this.$$("datatableInput").getValue();
 		if (currentValue !== "") {
-			this.$$("datatable").add({Name: currentValue});
+			this.table.add({Name: currentValue});
 			this.$$("datatableInput").setValue("");	
 		}
 	}
 
 	deletedItem() {
-		const selectedItem = this.$$("datatable").getSelectedId();
+		const selectedItem = this.table.getSelectedId();
 		if (selectedItem) {
-			this.$$("datatable").remove(selectedItem);
+			this.table.remove(selectedItem);
 		}
-	}
-
-	init() {
-		this.$$("datatable").parse(this.data);
 	}
 }

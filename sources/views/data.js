@@ -28,7 +28,6 @@ export default class DataView extends JetView{
 				},
 				{
 					view: "multiview", 
-					localId: "multiview", 
 					cells: [countriesTable, statusesTable]
 				}
 			]
