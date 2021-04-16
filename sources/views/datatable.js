@@ -11,8 +11,20 @@ export default class Datatable extends JetView {
 			rows: [
 				{
 					cols: [
-						{view: "button", value: "Add", width: 100, css:"webix_primary", click: () => this.addItem()},
-						{view: "button", value: "Delete", width: 100, css:"webix_primary", click: () => this.deletedItem()},
+						{
+							view: "button", 
+							value: "Add", 
+							width: 100, 
+							css:"webix_primary", 
+							click: () => this.addItem()
+						},
+						{
+							view: "button", 
+							value: "Delete", 
+							width: 100, 
+							css:"webix_primary", 
+							click: () => this.deletedItem()
+						},
 						{view: "text", localId: "datatableInput"}
 					]
 				},
