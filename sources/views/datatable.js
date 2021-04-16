@@ -20,13 +20,19 @@ export default class Datatable extends JetView {
 					view: "datatable",
 					localId: "datatable",
 					autoConfig: true,
+					editor: "text",
+					editable: true,
+					editaction: "dblclick"
 				},
 			]
 		};
 	}
 
 	addItem() {
-		this.$$("datatable").add({Name: this.$$("datatableInput").getValue()});
+		const currentValue = this.$$("datatableInput").getValue();
+		if (currentValue !== "") {
+			this.$$("datatable").add({Name: this.$$("datatableInput").getValue()});	
+		}
 	}
 
 	deletedItem() {
