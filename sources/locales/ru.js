@@ -3,5 +3,6 @@ export default {
 	"Contacts": "Контакты",
 	"Data": "Данные",
 	"Settings": "Настройки",
-	"Save": "Сохранить"
+	"Save": "Сохранить",
+	"Countries": "Страны"
 };

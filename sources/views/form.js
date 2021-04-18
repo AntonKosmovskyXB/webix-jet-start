@@ -79,8 +79,4 @@ export default class Form extends JetView {
 		}
 		);
 	}
-
-	addItem() {
-
-	}
 }
