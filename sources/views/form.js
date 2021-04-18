@@ -2,6 +2,8 @@ import {JetView} from "webix-jet";
 import { contacts } from "../models/contacts.js";
 import { countries } from "../models/countries.js";
 import { statuses } from "../models/statuses.js";
+import { contactsCollection } from "views/contacts.js";
+
 
 export default class Form extends JetView {
 	config() {
@@ -9,8 +11,8 @@ export default class Form extends JetView {
 			view: "form",
 			localId: "contactsForm",
 			elements: [
-				{view: "text", label: "Name", name: "Name"},
-				{view: "text", label: "Email", name: "Email"},
+				{view: "text", label: "Name", name: "Name", invalidMessage: "Field should not be empty"},
+				{view: "text", label: "Email", name: "Email", invalidMessage: "Please, fill correct email address"},
 				{rows:[
 					{ 
 						view: "combo", 
@@ -31,6 +33,14 @@ export default class Form extends JetView {
 					{ 
 						view: "button", 
 						value: "Save" , 
+						click: () => {
+							const formValues = this.form.getValues();
+							const formValidationResult = this.form.validate();
+							const selectedItem = contactsCollection.getItem(formValues.id);
+							if (selectedItem && formValidationResult) {
+								contactsCollection.updateItem(selectedItem.id, formValues);
+							}
+						}
 					},
 					{ 
 						view: "button", 
@@ -40,31 +50,39 @@ export default class Form extends JetView {
 					
 				]},
 				{}
-			]
+			],
+			rules:{
+				Name: webix.rules.isNotEmpty,
+				Email: function (value) {
+					return value.includes("@") && webix.rules.isNotEmpty;
+				},
+			}
 		};
 
 		return form;
 	}
 
-	init(url) {
-		this.contactsCollection = new webix.DataCollection({
-			data: contacts
-		})
+	init() {
 		this.form = this.$$("contactsForm");
+	}
+
+	urlChange() {
+		const currentId = this.getParam("id");
+		const currentItem = contactsCollection.getItem(currentId);
+		this.form.setValues(currentItem);
 	}
 
 	clearForm() {
 		webix.confirm({
 			text: "Do you want to clear this form?"
 		}).then(() => {
-			this.$$("contactsForm").clear();
+			this.form.clear();
+			this.form.clearValidation();
 		}
 		);
 	}
 
-	urlChange() {
-		const currentId = this.getParam("id");
-		const currentItem = this.contactsCollection.getItem(currentId);
-		this.form.setValues(currentItem);
+	addItem() {
+
 	}
 }
