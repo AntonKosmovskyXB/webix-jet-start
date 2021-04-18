@@ -2,8 +2,6 @@ import {JetView} from "webix-jet";
 import { contacts } from "../models/contacts.js";
 import { countries } from "../models/countries.js";
 import { statuses } from "../models/statuses.js";
-import { contactsCollection } from "views/contacts.js";
-
 
 export default class Form extends JetView {
 	config() {
@@ -36,9 +34,9 @@ export default class Form extends JetView {
 						click: () => {
 							const formValues = this.form.getValues();
 							const formValidationResult = this.form.validate();
-							const selectedItem = contactsCollection.getItem(formValues.id);
+							const selectedItem = contacts.getItem(formValues.id);
 							if (selectedItem && formValidationResult) {
-								contactsCollection.updateItem(selectedItem.id, formValues);
+								contacts.updateItem(selectedItem.id, formValues);
 							}
 						}
 					},
@@ -68,7 +66,7 @@ export default class Form extends JetView {
 
 	urlChange() {
 		const currentId = this.getParam("id");
-		const currentItem = contactsCollection.getItem(currentId);
+		const currentItem = contacts.getItem(currentId);
 		this.form.setValues(currentItem);
 	}
 

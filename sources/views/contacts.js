@@ -1,11 +1,6 @@
 import {JetView} from "webix-jet";
 import {contacts} from "../models/contacts.js";
 import Form from "views/form.js";
-import { countries } from "../models/countries.js";
-
-export const contactsCollection = new webix.DataCollection({
-	data: contacts
-});
 
 export default class ContactsView  extends JetView{
 	config() {
@@ -29,7 +24,7 @@ export default class ContactsView  extends JetView{
 							webix.confirm({
 								text: "Do you want to remove this user?"
 							}).then(() => {
-								contactsCollection.remove(id);
+								contacts.remove(id);
 
 								if (id == selectedId) {
 									this.list.select(this.list.data.order[0]);
@@ -45,7 +40,7 @@ export default class ContactsView  extends JetView{
 					css: "webix_primary", 
 					click: () => {
 						const newItem = {"Name":"New User","Email":"new@gmail.com","Status":1,"Country":1};
-						contactsCollection.add(newItem);
+						contacts.add(newItem);
 						this.list.select(newItem.id);
 					}
 				}
@@ -59,10 +54,9 @@ export default class ContactsView  extends JetView{
 
 	init() {
 		this.list = this.$$("contactsList");
-		this.list.sync(contactsCollection);
-		const firstElementId = contacts[0].id;
+		this.list.sync(contacts);
+		const firstElementId = contacts.data.order[0];
 		const selectedId = this.getParam("id");
-
 		if (!selectedId) {
 			this.list.select(firstElementId);
 		} else {
