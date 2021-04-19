@@ -52,20 +52,15 @@ export default class ContactsView  extends JetView{
 	init() {
 		this.list = this.$$("contactsList");
 		this.list.sync(contacts);
+	}
+
+	urlChange() {
 		const id = this.getParam("id") || contacts.getFirstId();
 		
 		if (id && contacts.exists(id)) {
 			this.list.select(id);
 		} else {
 			this.list.select(contacts.getFirstId());
-		}
-	}
-
-	urlChange() {
-		const id = this.getParam("id");
-		
-		if (id && contacts.exists(id)){
-			this.list.select(id);
 		}
 	}
 

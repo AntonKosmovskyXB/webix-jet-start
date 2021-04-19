@@ -1,4 +1,4 @@
-import {JetView} from "webix-jet";
+import {JetView, plugins} from "webix-jet";
 
 export default class TopView extends JetView {
 	config(){
@@ -24,7 +24,7 @@ export default class TopView extends JetView {
 		};
 	}
 
-	init() {
-		this.$$("top:menu").select("contacts");
+	init(){
+		this.use(plugins.Menu, "top:menu");
 	}
 }
