@@ -10,8 +10,8 @@ export default class Form extends JetView {
 			view: "form",
 			localId: "contactsForm",
 			elements: [
-				{view: "text", label: _("Name"), name: "Name", invalidMessage: "Field should not be empty"},
-				{view: "text", label: _("Email"), name: "Email", invalidMessage: "Please, fill correct email address"},
+				{view: "text", label: _("Name"), name: "Name", invalidMessage: _("Field should not be empty")},
+				{view: "text", label: _("Email"), name: "Email", invalidMessage: _("Please, fill correct email address")},
 				{rows:[
 					{ 
 						view: "combo", 
@@ -19,14 +19,14 @@ export default class Form extends JetView {
 						name: "Country", 
 						margin: 100,
 						options: { body: {template:"#Name#"}, data: countries }, 
-						invalidMessage: "Field should not be empty" },
+						invalidMessage: _("Field should not be empty") },
 					{ 
 						view: "combo", 
 						label: _("Status"), 
 						name: "Status", 
 						margin: 200,
 						options: { body: {template:"#Name#"}, data: statuses }, 
-						invalidMessage: "Field should not be empty" },
+						invalidMessage: _("Field should not be empty") },
 				]},
 				{cols:[
 					{ 
@@ -75,8 +75,9 @@ export default class Form extends JetView {
 	}
 
 	clearForm() {
+		const _ = this.app.getService("locale")._;
 		webix.confirm({
-			text: "Do you want to clear this form?"
+			text: _("Do you want to clear this form?")
 		}).then(() => {
 			this.form.clear();
 			this.form.clearValidation();

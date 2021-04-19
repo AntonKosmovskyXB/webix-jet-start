@@ -23,7 +23,7 @@ export default class ContactsView  extends JetView{
 						"wxi-close": (event, id) => {
 							const selectedId = this.list.getSelectedId();
 							webix.confirm({
-								text: "Do you want to remove this user?"
+								text: _("Do you want to remove this user?")
 							}).then(() => {
 								contacts.remove(id);
 
