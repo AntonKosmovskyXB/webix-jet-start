@@ -18,14 +18,14 @@ export default class Form extends JetView {
 						name: "Country", 
 						margin: 100,
 						options: { body: {template:"#Name#"}, data: countries }, 
-						invalidMessage: "Choose the country!" },
+						invalidMessage: "Field should not be empty" },
 					{ 
 						view: "combo", 
 						label: "Status", 
 						name: "Status", 
 						margin: 200,
 						options: { body: {template:"#Name#"}, data: statuses }, 
-						invalidMessage: "Choose the status!" },
+						invalidMessage: "Field should not be empty" },
 				]},
 				{cols:[
 					{ 
@@ -54,7 +54,9 @@ export default class Form extends JetView {
 			],
 			rules:{
 				Name: webix.rules.isNotEmpty,
-				Email: webix.rules.isEmail
+				Email: webix.rules.isEmail,
+				Country: webix.rules.isNotEmpty,
+				Status: webix.rules.isNotEmpty
 			}
 		};
 
