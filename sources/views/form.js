@@ -32,12 +32,15 @@ export default class Form extends JetView {
 						view: "button", 
 						value: "Save" , 
 						click: () => {
-							const formValues = this.form.getValues();
 							const formValidationResult = this.form.validate();
-							const selectedItem = contacts.getItem(formValues.id);
-							if (selectedItem && formValidationResult) {
-								contacts.updateItem(selectedItem.id, formValues);
+							const selectedItem = this.getParam("id");
+
+							if (!formValidationResult || !selectedItem) {
+								return;
 							}
+
+							const formValues = this.form.getValues();
+							contacts.updateItem(selectedItem, formValues);
 						}
 					},
 					{ 
@@ -51,9 +54,7 @@ export default class Form extends JetView {
 			],
 			rules:{
 				Name: webix.rules.isNotEmpty,
-				Email: function (value) {
-					return value.includes("@") && webix.rules.isNotEmpty;
-				},
+				Email: webix.rules.isEmail
 			}
 		};
 

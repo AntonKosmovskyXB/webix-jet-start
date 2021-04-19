@@ -26,8 +26,8 @@ export default class ContactsView  extends JetView{
 							}).then(() => {
 								contacts.remove(id);
 
-								if (id == selectedId) {
-									this.list.select(this.list.data.order[0]);
+								if (id == selectedId && this.list.getFirstId()) {
+									this.list.select(this.list.getFirstId());
 								}
 							});
 							return false;
@@ -55,7 +55,7 @@ export default class ContactsView  extends JetView{
 	init() {
 		this.list = this.$$("contactsList");
 		this.list.sync(contacts);
-		const firstElementId = contacts.data.order[0];
+		const firstElementId = contacts.getFirstId();
 		const selectedId = this.getParam("id");
 		const selectedItem = this.list.getItem(selectedId);
 		
