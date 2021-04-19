@@ -5,23 +5,24 @@ import { statuses } from "../models/statuses.js";
 
 export default class Form extends JetView {
 	config() {
+		const _ = this.app.getService("locale")._;
 		const form = {
 			view: "form",
 			localId: "contactsForm",
 			elements: [
-				{view: "text", label: "Name", name: "Name", invalidMessage: "Field should not be empty"},
-				{view: "text", label: "Email", name: "Email", invalidMessage: "Please, fill correct email address"},
+				{view: "text", label: _("Name"), name: "Name", invalidMessage: "Field should not be empty"},
+				{view: "text", label: _("Email"), name: "Email", invalidMessage: "Please, fill correct email address"},
 				{rows:[
 					{ 
 						view: "combo", 
-						label: "Country", 
+						label: _("Country"), 
 						name: "Country", 
 						margin: 100,
 						options: { body: {template:"#Name#"}, data: countries }, 
 						invalidMessage: "Field should not be empty" },
 					{ 
 						view: "combo", 
-						label: "Status", 
+						label: _("Status"), 
 						name: "Status", 
 						margin: 200,
 						options: { body: {template:"#Name#"}, data: statuses }, 
@@ -30,7 +31,7 @@ export default class Form extends JetView {
 				{cols:[
 					{ 
 						view: "button", 
-						value: "Save" , 
+						value: _("Save") , 
 						click: () => {
 							const formValidationResult = this.form.validate();
 							const selectedItem = this.getParam("id");
@@ -45,7 +46,7 @@ export default class Form extends JetView {
 					},
 					{ 
 						view: "button", 
-						value: "Clear",
+						value: _("Clear"),
 						click: () => this.clearForm()
 					},
 					

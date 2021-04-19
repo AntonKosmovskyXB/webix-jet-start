@@ -4,6 +4,7 @@ import Form from "views/form.js";
 
 export default class ContactsView  extends JetView{
 	config() {
+		const _ = this.app.getService("locale")._;
 		const list = {
 			rows:[
 				{
@@ -36,7 +37,7 @@ export default class ContactsView  extends JetView{
 				},
 				{
 					view: "button", 
-					value: "Add contact", 
+					value: _("Add contact"), 
 					css: "webix_primary", 
 					click: () => {
 						const newItem = {"Name":"New User","Email":"new@gmail.com","Status":1,"Country":1};

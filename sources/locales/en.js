@@ -2,9 +2,16 @@ export default {
 	"Contacts": "Contacts",    
 	"Name": "Name",
 	"Email": "Email",
+	"Countries": "Countries",
 	"Country": "Country",
-	"Status": "Status",  
+	"Statuses": "Statuses", 
+	"Status": "Status", 
 	"Data": "Data",
 	"Settings": "Settings",
-	"Language": "Language"
+	"Language": "Language",
+	"Save": "Save",
+	"Clear": "Clear",
+	"Add contact": "Add contact",
+	"Add": "Add",
+	"Delete": "Delete"
 };
