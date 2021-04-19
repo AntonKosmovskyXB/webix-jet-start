@@ -1,7 +1,8 @@
-import {JetView} from "webix-jet";
+import {JetView, plugins} from "webix-jet";
 
 export default class TopView extends JetView {
 	config(){
+		const _ = this.app.getService("locale")._; 
 		return {
 			rows:[
 				{ type:"space", cols:[
@@ -12,14 +13,18 @@ export default class TopView extends JetView {
 						layout: "y",
 						select:true,
 						data:[
-							{id: "contacts", value: "Contacts", href: "#!/top/contacts"},
-							{id: "data", value: "Data", href: "#!/top/data"},
-							{id: "settings", value: "Settings", href: "#!/top/settings"}
+							{id: "contacts", value: _("Contacts")},
+							{id: "data", value: _("Data")},
+							{id: "settings", value: _("Settings")}
 						]
 					}, 
 					{ $subview:true }
 				]},
 			]
 		};
+	}
+
+	init(){
+		this.use(plugins.Menu, "top:menu");
 	}
 }

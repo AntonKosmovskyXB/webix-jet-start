@@ -47,6 +47,7 @@ module.exports = function(env) {
 			modules: ["./sources", "node_modules"],
 			alias:{
 				"jet-views":path.resolve(__dirname, "sources/views"),
+				"jet-locales":path.resolve(__dirname, "sources/locales")
 			}
 		},
 		plugins: [

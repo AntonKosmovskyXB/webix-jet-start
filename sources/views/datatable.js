@@ -7,20 +7,21 @@ export default class Datatable extends JetView {
 	}
 
 	config() {
+		const _ = this.app.getService("locale")._;
 		return {
 			rows: [
 				{
 					cols: [
 						{
 							view: "button", 
-							value: "Add", 
+							value: _("Add"), 
 							width: 100, 
 							css:"webix_primary", 
 							click: () => this.addItem()
 						},
 						{
 							view: "button", 
-							value: "Delete", 
+							value: _("Delete"), 
 							width: 100, 
 							css:"webix_primary", 
 							click: () => this.deletedItem()

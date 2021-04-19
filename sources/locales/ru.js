@@ -1,0 +1,21 @@
+export default {	
+	"Contacts": "Контакты",    
+	"Name": "Имя",
+	"Email": "Почта",
+	"Countries": "Страны",
+	"Country": "Страна",
+	"Statuses": "Статусы", 
+	"Status": "Статус",
+	"Data": "Данные",
+	"Settings": "Настройки",
+	"Language": "Язык",
+	"Save": "Сохранить",
+	"Clear": "Очистить",
+	"Add contact": "Добавить контакт",
+	"Add": "Добавить",
+	"Delete": "Удалить",
+	"Do you want to remove this user?": "Вы хотите удалить этого пользователя?",
+	"Please, fill correct email address": "Пожалуйста, введите корректный почтовый адрес",
+	"Field should not be empty": "Поле не должно быть пустым",
+	"Do you want to clear this form?": "Вы хотите очистить эту форму?"
+};

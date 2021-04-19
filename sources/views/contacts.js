@@ -1,52 +1,73 @@
 import {JetView} from "webix-jet";
-import { contacts } from "../models/contacts";
+import {contacts} from "../models/contacts.js";
+import Form from "views/form.js";
 
 export default class ContactsView  extends JetView{
 	config() {
+		const _ = this.app.getService("locale")._;
 		const list = {
-			view: "list",
-			localId: "contactsList",
-			template: "Name: #Name#, Email: #Email#",
-			select: true
-		};
-
-		const form = {
-			view: "form",
-			localId: "contactsForm",
-			elements: [
-				{view: "text", label: "Name", name: "name"},
-				{view: "text", label: "Email", name: "email"},
-				{cols:[
-					{ 
-						view: "button", 
-						value: "Save" , 
+			rows:[
+				{
+					view: "list",
+					localId: "contactsList",
+					css: "contacts-item",
+					template: "Name: #Name#, Email: #Email#, Country: #Country#, Status: #Status# <span class='webix_icon wxi-close'></span>",
+					select: true,
+					on:{
+						onAfterSelect: () => {
+							const selectedId = this.list.getSelectedId();
+							this.setUrlParam(selectedId);
+						},
 					},
-					{ 
-						view: "button", 
-						value: "Clear",
-						click: () => this.clearForm()
-					},
-				]},
-				{}
+					onClick:{
+						"wxi-close": (event, id) => {
+							webix.confirm({
+								text: _("Do you want to remove this user?")
+							}).then(() => {
+								const selectedId = this.list.getSelectedId();
+								contacts.remove(id);
+								if (selectedId == id) {
+									this.app.show("/top/contacts");
+								}
+							});
+							return false;
+						}
+					}
+				},
+				{
+					view: "button", 
+					value: _("Add contact"), 
+					css: "webix_primary", 
+					click: () => {
+						const newItem = {"Name":"New User","Email":"new@gmail.com","Status":1,"Country":1};
+						contacts.add(newItem);
+						this.list.select(newItem.id);
+					}
+				}
 			]
 		};
 
 		return { 
-			cols:[list, form]
+			cols:[list, Form]
 		};
 	}
 
 	init() {
-		this.$$("contactsList").parse(contacts);
+		this.list = this.$$("contactsList");
+		this.list.sync(contacts);
 	}
 
-	clearForm() {
-		webix.confirm({
-			text: "Do you want to clear this form?"
-		}).then(() => {
-			this.$$("contactsForm").clear();
+	urlChange() {
+		const id = this.getParam("id") || contacts.getFirstId();
+		
+		if (id && contacts.exists(id)) {
+			this.list.select(id);
+		} else {
+			this.list.select(contacts.getFirstId());
 		}
-		);
 	}
-	
+
+	setUrlParam(selectedId) {
+		this.setParam("id", selectedId, true);
+	}
 }

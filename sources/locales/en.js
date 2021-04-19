@@ -1,0 +1,21 @@
+export default {	
+	"Contacts": "Contacts",    
+	"Name": "Name",
+	"Email": "Email",
+	"Countries": "Countries",
+	"Country": "Country",
+	"Statuses": "Statuses", 
+	"Status": "Status", 
+	"Data": "Data",
+	"Settings": "Settings",
+	"Language": "Language",
+	"Save": "Save",
+	"Clear": "Clear",
+	"Add contact": "Add contact",
+	"Add": "Add",
+	"Delete": "Delete",
+	"Do you want to remove this user?": "Do you want to remove this user?",
+	"Please, fill correct email address": "Please, fill correct email address",
+	"Do you want to clear this form?": "Do you want to clear this form?",
+	"Field should not be empty": "Field should not be empty"
+};

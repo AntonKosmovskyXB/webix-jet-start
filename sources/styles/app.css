@@ -1,0 +1,8 @@
+.contacts-item .webix_list_item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.webix_icon {
+    margin-top: 5px;
+}
