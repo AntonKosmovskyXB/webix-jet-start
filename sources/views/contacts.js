@@ -57,8 +57,9 @@ export default class ContactsView  extends JetView{
 		this.list.sync(contacts);
 		const firstElementId = contacts.data.order[0];
 		const selectedId = this.getParam("id");
+		const selectedItem = this.list.getItem(selectedId);
 		
-		if (!selectedId) {
+		if (!selectedItem) {
 			this.list.select(firstElementId);
 		} else {
 			this.list.select(selectedId);
