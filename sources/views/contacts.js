@@ -24,10 +24,11 @@ export default class ContactsView  extends JetView{
 							webix.confirm({
 								text: _("Do you want to remove this user?")
 							}).then(() => {
-								if (this.list.getSelectedId() == id) {
+								const selectedId = this.list.getSelectedId();
+								contacts.remove(id);
+								if (selectedId == id) {
 									this.app.show("/top/contacts");
 								}
-								contacts.remove(id);
 							});
 							return false;
 						}
