@@ -67,6 +67,4 @@ export default class ContactsView  extends JetView{
 	setUrlParam(selectedId) {
 		this.setParam("id", selectedId, true);
 	}
-
-	
 }
