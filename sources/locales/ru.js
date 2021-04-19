@@ -1,8 +1,10 @@
-export default {
-	"Language": "Язык",
-	"Contacts": "Контакты",
+export default {	
+	"Contacts": "Контакты",    
+	"Name": "Имя",
+	"Email": "Почта",
+	"Country": "Страна",
+	"Status": "Статус",  
 	"Data": "Данные",
 	"Settings": "Настройки",
-	"Save": "Сохранить",
-	"Countries": "Страны"
+	"Language": "Язык"
 };
