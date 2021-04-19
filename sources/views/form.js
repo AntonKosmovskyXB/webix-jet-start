@@ -34,7 +34,7 @@ export default class Form extends JetView {
 						value: _("Save") , 
 						click: () => {
 							const formValidationResult = this.form.validate();
-							if (formValidationResult && this.$$("contactsForm").isDirty()) {
+							if (formValidationResult && this.form.isDirty()) {
 								const values = this.form.getValues();
 								contacts.updateItem(values.id, values);
 							}

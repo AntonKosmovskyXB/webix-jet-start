@@ -13,9 +13,9 @@ export default class TopView extends JetView {
 						layout: "y",
 						select:true,
 						data:[
-							{id: "contacts", value: _("Contacts"), href: "#!/top/contacts"},
-							{id: "data", value: _("Data"), href: "#!/top/data"},
-							{id: "settings", value: _("Settings"), href: "#!/top/settings"}
+							{id: "contacts", value: _("Contacts")},
+							{id: "data", value: _("Data")},
+							{id: "settings", value: _("Settings")}
 						]
 					}, 
 					{ $subview:true }
