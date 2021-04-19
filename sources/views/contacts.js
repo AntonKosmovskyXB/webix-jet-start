@@ -60,10 +60,10 @@ export default class ContactsView  extends JetView{
 		const selectedId = this.getParam("id");
 		const selectedItem = this.list.getItem(selectedId);
 		
-		if (!selectedItem) {
-			this.list.select(firstElementId);
-		} else {
+		if (selectedItem) {
 			this.list.select(selectedId);
+		} else if (firstElementId) {
+			this.list.select(firstElementId);
 		}
 	}
 
