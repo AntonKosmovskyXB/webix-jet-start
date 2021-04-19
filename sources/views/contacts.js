@@ -21,15 +21,11 @@ export default class ContactsView  extends JetView{
 					},
 					onClick:{
 						"wxi-close": (event, id) => {
-							const selectedId = this.list.getSelectedId();
 							webix.confirm({
 								text: _("Do you want to remove this user?")
 							}).then(() => {
 								contacts.remove(id);
-
-								if (id == selectedId && this.list.getFirstId()) {
-									this.list.select(this.list.getFirstId());
-								}
+								this.app.show("/top/contacts");
 							});
 							return false;
 						}
@@ -56,14 +52,20 @@ export default class ContactsView  extends JetView{
 	init() {
 		this.list = this.$$("contactsList");
 		this.list.sync(contacts);
-		const firstElementId = contacts.getFirstId();
-		const selectedId = this.getParam("id");
-		const selectedItem = this.list.getItem(selectedId);
+		const id = this.getParam("id") || contacts.getFirstId();
 		
-		if (selectedItem) {
-			this.list.select(selectedId);
-		} else if (firstElementId) {
-			this.list.select(firstElementId);
+		if (id && contacts.exists(id)) {
+			this.list.select(id);
+		} else {
+			this.list.select(contacts.getFirstId());
+		}
+	}
+
+	urlChange() {
+		const id = this.getParam("id");
+		
+		if (id && contacts.exists(id)){
+			this.list.select(id);
 		}
 	}
 

@@ -34,14 +34,13 @@ export default class Form extends JetView {
 						value: _("Save") , 
 						click: () => {
 							const formValidationResult = this.form.validate();
-							const selectedItem = this.getParam("id");
+							const selectedId = this.form.getValues().id;
 
-							if (!formValidationResult || !selectedItem) {
+							if (!formValidationResult || !selectedId) {
 								return;
 							}
 
-							const formValues = this.form.getValues();
-							contacts.updateItem(selectedItem, formValues);
+							contacts.updateItem(selectedId, this.form.getValues());
 						}
 					},
 					{ 
@@ -72,6 +71,7 @@ export default class Form extends JetView {
 		const currentId = this.getParam("id");
 		const currentItem = contacts.getItem(currentId);
 		this.form.setValues(currentItem);
+		this.form.clearValidation();
 	}
 
 	clearForm() {

@@ -23,4 +23,8 @@ export default class TopView extends JetView {
 			]
 		};
 	}
+
+	init() {
+		this.$$("top:menu").select("contacts");
+	}
 }
