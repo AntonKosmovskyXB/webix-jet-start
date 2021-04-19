@@ -16,5 +16,6 @@ export default {
 	"Delete": "Delete",
 	"Do you want to remove this user?": "Do you want to remove this user?",
 	"Please, fill correct email address": "Please, fill correct email address",
-	"Do you want to clear this form?": "Do you want to clear this form?"
+	"Do you want to clear this form?": "Do you want to clear this form?",
+	"Field should not be empty": "Field should not be empty"
 };
