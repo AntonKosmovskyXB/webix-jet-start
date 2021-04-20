@@ -3,6 +3,3 @@ codebase/
 node_modules/
 *.log
 dist/
-config
-jet.test
-db.sqlite
