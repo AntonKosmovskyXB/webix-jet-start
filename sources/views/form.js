@@ -61,7 +61,6 @@ export default class Form extends JetView {
 
 	init() {
 		this.form = this.$$("contactsForm");
-		this.app.callEvent("OnFormInit", []);
 	}
 
 	urlChange() {
