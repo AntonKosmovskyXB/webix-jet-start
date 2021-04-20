@@ -1,5 +1,7 @@
 import {JetView} from "webix-jet";
 import {contacts} from "../models/contacts.js";
+import {countries} from "../models/countries.js";
+import {statuses} from "../models/statuses.js";
 import Form from "views/form.js";
 
 export default class ContactsView  extends JetView{
@@ -39,9 +41,12 @@ export default class ContactsView  extends JetView{
 					value: _("Add contact"), 
 					css: "webix_primary", 
 					click: () => {
-						const newItem = {"Name":"New User","Email":"new@gmail.com","Status":1,"Country":1};
-						contacts.add(newItem);
-						this.list.select(newItem.id);
+						const newItem = {"Name":"New User","Email":"new@gmail.com","Status":statuses.data.order[0] || " ","Country":countries.data.order[0] || " "};
+						contacts.waitSave(() => {
+							contacts.add(newItem);	
+						}).then((res) => {
+							this.list.select(res.id);
+						});
 					}
 				}
 			]
@@ -58,13 +63,16 @@ export default class ContactsView  extends JetView{
 	}
 
 	urlChange() {
-		const id = this.getParam("id") || contacts.getFirstId();
-		
-		if (id && contacts.exists(id)) {
-			this.list.select(id);
-		} else {
-			this.list.select(contacts.getFirstId());
-		}
+	
+		contacts.waitData.then(() => {
+			const id = this.getParam("id") || contacts.getFirstId();
+			
+			if (id && contacts.exists(id)) {
+				this.list.select(id);
+			} else {
+				this.list.select(contacts.getFirstId());
+			}
+		});
 	}
 
 	setUrlParam(selectedId) {
