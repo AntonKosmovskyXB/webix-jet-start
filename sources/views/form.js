@@ -61,10 +61,15 @@ export default class Form extends JetView {
 
 	init() {
 		this.form = this.$$("contactsForm");
+		this.app.callEvent("OnFormInit", []);
 	}
 
 	urlChange() {
-		contacts.waitData.then(() => {
+		webix.promise.all([
+			contacts.waitData,
+			countries.waitData,
+			statuses.waitData
+		]).then(()=>{
 			const currentItem = contacts.getItem(this.getParam("id")) || contacts.getItem(contacts.getFirstId());
 			this.form.setValues(currentItem);
 			this.form.clearValidation();

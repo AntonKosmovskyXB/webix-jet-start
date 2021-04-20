@@ -63,6 +63,7 @@ export default class ContactsView  extends JetView{
 	}
 
 	urlChange() {
+	
 		contacts.waitData.then(() => {
 			const id = this.getParam("id") || contacts.getFirstId();
 			
